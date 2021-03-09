@@ -7,15 +7,21 @@ const PostDetail = () => {
 	const [ post, setPost ] = useState({});
 	const [ comments, setComments ] = useState([]);
 
-	useEffect(() => {
-		const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
-		fetch(url).then((res) => res.json()).then((data) => setPost(data));
-	}, []);
+	useEffect(
+		() => {
+			const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
+			fetch(url).then((res) => res.json()).then((data) => setPost(data));
+		},
+		[ id ]
+	);
 
-	useEffect(() => {
-		const url = `https://jsonplaceholder.typicode.com/comments?postId=${id}`;
-		fetch(url).then((res) => res.json()).then((data) => setComments(data));
-	}, []);
+	useEffect(
+		() => {
+			const url = `https://jsonplaceholder.typicode.com/comments?postId=${id}`;
+			fetch(url).then((res) => res.json()).then((data) => setComments(data));
+		},
+		[ id ]
+	);
 
 	return (
 		<div>
